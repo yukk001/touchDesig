@@ -5,9 +5,35 @@
 
 举个例子：美国的家用电器适用的标准电压是110V，而我们中国的家用电器标准电压是220V。且，我们家庭供电是220V，仅设现在你家以前有朋友帮你从美国带了一些家电回来。可是咱们这电压不适合，但是放在那里不用，重新去买又浪费资源，那现在我们要想办法，将这些家电利用起来，我们就可以去市场买一个变压插座，将220V的电流接进去，而接出来的会自动降压到110V，那么这个变压插座所充当的角色就是：适配器。其实类似的例子有很多，比如从电信拉ADSL，你也需要一个分离器，然后一根接电话，一根接Model。下面列，我们以这个变压插座为例子，以代码的方式来说明：
 */
+
+interface Target {
+    function get110Power();
+    function get338Power();
+}
+
+
+//220的插头
+class Power {
+    public function get220Power(){
+        return 220;
+    }
+}
+
+class Adapter extends Power implements Target {
+
+    //变压过程
+    public function get110Power() {
+        return $this->get220Power() - 110;
+    }
+    public function get338Power() {
+        return $this->get220Power() + 118;
+    }
+
+}
+
+
+//美国
 $it = new Adapter();
 $power = $it->get110Power();
+$power = $it->get338Power();
 echo power;
-
-
-//德国的电器标准是330v，如果买了一个德国的电器，在中国如果能正常使用？
