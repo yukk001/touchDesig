@@ -100,10 +100,17 @@ class HipiaoDiKou implements ITicketObserver {
     }
 }
 
+class Email implements ITicketObserver {
+    public function onBuyTicketOver($sender, $ticket) {
+        echo (date ( 'Y-m-d H:i:s' ) . " 邮件已发送。\n");
+    }
+}
+
 #============================用户购票====================
 $buy = new HipiaoBuy ();
 $buy->addObserver ( new HipiaoMSM () ); //根据不同业务逻辑加入各种通知
 $buy->addObserver ( new HipiaoTxt () );
 $buy->addObserver ( new HipiaoDiKou () );
+$buy->addObserver ( new Email () );
 //购票
 $buy->buyTicket ( "一排一号" );
