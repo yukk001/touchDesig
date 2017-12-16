@@ -35,5 +35,6 @@ class Adapter extends Power implements Target {
 //ÃÀ¹ú
 $it = new Adapter();
 $power = $it->get110Power();
-$power = $it->get338Power();
-echo power;
+$powers = $it->get338Power();
+echo $power.PHP_EOL;
+echo $powers;
